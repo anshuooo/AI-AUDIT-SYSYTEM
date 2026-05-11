@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  server:
+    name: Server CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install server dependencies
+        working-directory: server
+        run: npm install
+
+      - name: Run lint
+        working-directory: server
+        run: npm run lint
+
+      - name: Run tests
+        working-directory: server
+        run: npm test
