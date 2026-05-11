@@ -8,6 +8,8 @@ import PublicResults from './components/PublicResults'
 import LandingPage from './components/LandingPage'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function App() {
   const [auditResults, setAuditResults] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -30,7 +32,7 @@ function App() {
         aiSummary: results.aiSummary
       };
 
-      const response = await axios.post('http://localhost:5000/api/audit/save', payload);
+      const response = await axios.post(`${API_URL}/api/audit/save`, payload);
       
       if (response.data.success) {
         const savedId = response.data.id;

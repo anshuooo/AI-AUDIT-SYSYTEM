@@ -6,6 +6,8 @@ import ResultsPage from './ResultsPage';
 import { Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const PublicResults = () => {
   const { id } = useParams();
   const [results, setResults] = useState(null);
@@ -16,7 +18,7 @@ const PublicResults = () => {
     const fetchAudit = async () => {
       console.log('🔍 [PUBLIC RESULTS] Fetching audit with ID:', id);
       try {
-        const response = await axios.get(`http://localhost:5000/api/audit/${id}`);
+        const response = await axios.get(`${API_URL}/api/audit/${id}`);
         console.log('📥 [PUBLIC RESULTS] Response received:', response.data);
 
         if (response.data.success && response.data.audit) {
