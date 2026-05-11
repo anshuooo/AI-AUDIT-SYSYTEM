@@ -15,7 +15,7 @@ Reviewing plan allocation and overlapping tools may help lower long-term operati
 `;
 
   // Validate API key
-  if (!apiKey || apiKey === 'AIzaSyAARp_tL-qj3yCD2jcX-lp6b16bc2fZvz4') {
+ if (!apiKey || apiKey === 'your_api_key_here') {
     console.warn('⚠️ Missing Gemini API Key');
     return fallbackSummary;
   }
