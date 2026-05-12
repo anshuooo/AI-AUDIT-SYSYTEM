@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
-import axios from 'axios';
+import { leadAPI } from '../services/api';
 import { motion } from 'framer-motion';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 import { 
   TrendingDown, 
   Sparkles, 
@@ -269,7 +267,7 @@ const ResultsPage = ({ results, onReset, isPublic = false }) => {
 
               setLeadLoading(true);
               try {
-                const response = await axios.post(`${API_URL}/api/lead`, {
+                const response = await leadAPI.capture({
                   email: leadInfo.email,
                   companyName: leadInfo.companyName,
                   role: leadInfo.role,

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import { auditAPI } from '../services/api';
 import { Helmet } from 'react-helmet-async';
 import ResultsPage from './ResultsPage';
 import { Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const PublicResults = () => {
   const { id } = useParams();
@@ -18,7 +16,7 @@ const PublicResults = () => {
     const fetchAudit = async () => {
       console.log('🔍 [PUBLIC RESULTS] Fetching audit with ID:', id);
       try {
-        const response = await axios.get(`${API_URL}/api/audit/${id}`);
+        const response = await auditAPI.getById(id);
         console.log('📥 [PUBLIC RESULTS] Response received:', response.data);
 
         if (response.data.success && response.data.audit) {

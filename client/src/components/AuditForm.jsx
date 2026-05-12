@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { auditAPI } from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, ChevronRight, Info, AlertCircle, Loader2 } from 'lucide-react';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const AVAILABLE_TOOLS = ['ChatGPT', 'Claude', 'Gemini', 'GitHub Copilot', 'Cursor', 'Anthropic API', 'OpenAI API', 'Windsurf'];
 const PLANS = ['Free', 'Plus/Pro ($20)', 'Team', 'Enterprise'];
@@ -89,7 +87,7 @@ const AuditForm = ({ onResults }) => {
     if (validate()) {
       setLoading(true);
       try {
-        const response = await axios.post(`${API_URL}/api/audit`, formData);
+        const response = await auditAPI.analyze(formData);
         onResults(response.data);
       } catch (err) {
         setApiError(err.response?.data?.error || 'Failed to connect to the audit server. Ensure the backend is running.');
