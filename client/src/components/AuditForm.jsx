@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auditAPI } from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Trash2, ChevronRight, Info, AlertCircle, Loader2, zap } from 'lucide-react';
+import { Plus, Trash2, ChevronRight, Info, AlertCircle, Loader2, Zap } from 'lucide-react';
 
 const AVAILABLE_TOOLS = ['ChatGPT', 'Claude', 'Gemini', 'GitHub Copilot', 'Cursor', 'Anthropic API', 'OpenAI API', 'Windsurf'];
 const PLANS = ['Free', 'Plus/Pro ($20)', 'Team', 'Enterprise'];
